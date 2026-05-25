@@ -1,0 +1,103 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "katex/dist/katex.min.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-cosmic-black: var(--cosmic-black);
+  --color-cosmic-void: var(--cosmic-void);
+  --color-cosmic-deep: var(--cosmic-deep);
+  --color-cosmic-pulse: var(--cosmic-pulse);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Cosmic palette (oklch equivalents of #0a0a1a / #141432 / #1e1e5a / #4f46e5) */
+  --cosmic-black: oklch(0.08 0.03 280);
+  --cosmic-void: oklch(0.18 0.06 280);
+  --cosmic-deep: oklch(0.28 0.13 277);
+  --cosmic-pulse: oklch(0.55 0.22 277);
+
+  --background: var(--cosmic-black);
+  --foreground: oklch(0.92 0.01 270);
+  --card: var(--cosmic-void);
+  --card-foreground: oklch(0.92 0.01 270);
+  --popover: var(--cosmic-void);
+  --popover-foreground: oklch(0.92 0.01 270);
+  --primary: var(--cosmic-pulse);
+  --primary-foreground: oklch(0.98 0.005 270);
+  --secondary: oklch(0.22 0.05 280);
+  --secondary-foreground: oklch(0.92 0.01 270);
+  --muted: oklch(0.2 0.04 280);
+  --muted-foreground: oklch(0.62 0.03 270);
+  --accent: var(--cosmic-deep);
+  --accent-foreground: oklch(0.98 0.005 270);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0.005 270);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: var(--cosmic-pulse);
+}
+
+.dark {
+  /* Same as :root — this app is dark-only */
+  --background: var(--cosmic-black);
+  --foreground: oklch(0.92 0.01 270);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--cosmic-pulse) 35%, transparent);
+    color: oklch(0.98 0.005 270);
+  }
+}
+
+/* KaTeX color tuning for dark surface */
+.katex {
+  color: oklch(0.95 0.01 270);
+}
